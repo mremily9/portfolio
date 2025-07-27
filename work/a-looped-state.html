@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
+        <meta property="og:image" content="../imgs/favicon.png"/>
+        <title></title>
+        <link href="../style.css" rel="stylesheet" type="text/css">  
+    </head>
+    
+
+    <!-- nav -->
+    <header class="site-header">
+        <div  class="logo-header">
+            <h1><a href="../index.html">EMILY CHIN</a></h1>
+        </div> 
+        <nav class="site-navigation"> 
+            <ul class="nav">
+                <li><h3><a href="../work.html" class="nav-selected">WORK</a></h3></li>
+                <li><h3><a href="../play.html" class="nav">PLAY</a></h3></li>
+                <li><h3><a href="../contact.html" class="nav">CONTACT</a></h3></li>
+                <li><h3><a href="../about.html" class="nav">ABOUT</a></h3></li>
+            </ul>  
+        </nav>
+    </header>
+
+    <!-- body section -->
+    <main>
+        <section>
+            <section>
+                <a href="javascript:history.back()"><< go back</a>
+                <h1 id="project-title">Assignment 2: Looped States</h1>
+                <h2 id="project-title">DESIGN 240 @ UOA</h2>
+                <div>
+                    <div class="description">
+                        <p>
+                          Using the same statstic from <a href="">Assignment 1</a> of <b>3,106 tonnes of clothing are wasted before being sold or worn.</b> We are looking into the reasons behind "why" this statstic is the reason it is. How it went so poorly in the first place. With the outcome being a looped gif to showcase the idea in an abstract manner, playing aorund with the use of images and creating my own digital assets.
+
+                        </p>
+                    </div>
+                    <div class="skills">
+                        <p>
+                          <b>Type:</b> Code + Design
+                          <br>
+                          <b>Programs:</b> Miro, Processing, Java, and Clip Studio pro. 
+                          <br>
+                          <b>Skills:</b> Design thinking, Documentation of design process, Java Code + Programming, Digital illustation and Sketching. 
+                        </p>
+                    </div>
+                    <div class="info">
+                      <p><b>Date:</b> May 2024 <br><br> Supervised by Steffan Hooper in DESIGN 240: Designing with Data @ UOA</p>
+                    </div>
+                </div>
+                
+                <section>
+                  <img src="../imgs/workImg/240/A2echi775.gif" style="width: 49.8%;">
+                  <img src="../imgs/workImg/240/A2echi775.gif" style="width: 49.8%;">
+                  <img src="../imgs/workImg/240/A2echi775.gif" style="width:100%; max-height: 550px; object-fit: cover;">
+                </section>
+                
+                <!-- process -->
+                <h2>Process</h2>
+                <p>
+                    I started off this project by looking into the statstic of "3,106 tonnes of clothing are wasted before being sold or worn." and the reason behind why it exists.  
+                </p>
+                <img src="../imgs/workImg/240/process1.png">
+                <p>
+                  From these reasons I had started to create concepts in which I had asked my peers for feedback on which were the best to represent my "why" on the statstic.
+                </p>
+                <img src="../imgs/workImg/240/process2.png">
+                <p>
+                    I had then started on creating a GIF to then represent the behind the reason to why this statstic exists. I had documented this process within miro which can be looked at below. 
+                </p>
+                <iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVNmcjx3A=/?moveToViewport=-5319,-3485,10601,6684&embedId=647529040008" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+
+                <h2>
+                    Final Output
+                </h2>
+                <img src="../imgs/workImg/240/A2echi775.gif">
+
+                <h2>Artist intent</h2>
+                <p>
+                    When expanding on the idea of what were the reasons and the "why" behind my chosen statistic, "3,106 tonnes of clothing are wasted before being sold or worn.", I found that one of the main reasons was changes within a season, retail stores would throw away clothing that doesn't fit the season as customers wouldn't buy them anymore.
+                    <br><br>
+                    From this, I then created my looping gif with the idea of showcasing how clothing would get thrown out as it passes its season and becomes "out-of-date". I showcased this idea with a rotating background with illustrations of each of the seasons; in the foreground, I looked into specific clothing pieces that are linked with each season and showed them coming up to the centre before getting thrown into the bin once the background had turned to the next season. This then becomes a looping cycle of throwing out clothes from stores once they hit past their season.
+                    <br><br>
+                    I also wanted to confirm the themes of each season and make sure each season had a colour palette to help make each season with its specific clothing be with each other. Seasons also often have colours associated with them, helping aid in visual clarity.
+                </p>
+
+                <h2>Source code</h2>
+                <pre>
+                    <code>
+                      PImage background, winter, summer, spring, autumn, binBottom, binLid, binBottomFront;
+                      //Variables being decleared
+                      float c = 0; //Count value - used for rotation
+                      float bgRotation = 0; //Rotation value for background
+                      int pause = 0; //pause value
+                      int y=-200; //y value for the bin animation
+                      int t = 0; //for transparency
+                      int s = 4; //switching clothes drawing
+
+                      void setup() {
+                        frameRate(50);
+                        size(1000, 1000);
+                        //Loading in the drawings of each asset 
+                        background = loadImage("assets/background.png");
+                        winter = loadImage("assets/winter.png");
+                        summer = loadImage("assets/summer.png");
+                        spring = loadImage("assets/spring.png");
+                        autumn = loadImage("assets/autumn.png");
+                        binBottom = loadImage("assets/binBottom.png");
+                        binBottomFront = loadImage("assets/binBottomFront.png");
+                        binLid = loadImage("assets/binLid.png");
+                      }
+
+                      void draw() {
+                        //Set the images to translate around the bottom middle area
+                        //to allow for it to rotate/pivot there. 
+                        scale(2);
+                        imageMode(CENTER);
+                        translate(250, 500);
+                        
+                        //Rotation to only apply to the background/seasons
+                        pushMatrix();
+                        translate(0, 300);
+                        noTint();
+                        rotate(radians(bgRotation));
+                        image(background, 0, 0);
+                        popMatrix();
+                        
+                        
+                        clothing(s);
+
+                        //Count system so that every 90 degrees it pauses
+                        c += 1;
+                        t+=5;
+                        bgRotation += 0.33;
+                        if(c%90 == 0){ 
+                          c -= 1;
+                          //To stop the bin at the right timing
+                          bin(y, s);
+                          if(y<190){
+                            y+= 3; 
+                          }
+                          else{
+                          //tint variable
+                          t-=30; 
+                          }
+                          pause += 1;
+                          if(pause == 182){ //Change the value to change the pause time
+                            c += 2; 
+                            pause = 0; 
+                            y = -100; 
+                            t=0;
+                            s+=1;
+                          }
+                        }
+                        //Save frames for gif 
+                        //if(c<1092){
+                        //  saveFrame("frames/####.png");
+                        //}
+                      }
+
+                      void bin(int y, int s ) { //Animation of bin closing
+                        noTint();
+                        rotate(radians(-c)); 
+                        image(binBottom, 0, -55 + -y);
+                        
+                        //Sandwich the clotihng inbetween the two layers of the bin
+                        //so that the clothing looks like its going inside the bin
+                        pushMatrix();
+                        clothing(s);
+                        popMatrix();
+                        
+                        noTint();
+                        image(binBottomFront, 0, -55 + -y);
+                        image(binLid, -7, -555 + y);
+                      }
+
+                      void clothing(int s){//Function for clothing animation and swaps
+                        rotate(radians(c));//Rotations for the clothing
+                        
+                        tint(255, t);//Apply transparency
+                        
+                        //System where variable s will increase every 90 degrees
+                        //to switch between each of the 4 clothes
+                        switch(s%4) {
+                        case 0:
+                          image(summer, -250, 0);
+                          break;
+                        case 1:
+                          image(spring, 0, 250);
+                          break;
+                        case 2:
+                          image(winter, 250, 0);
+                          break;
+                        case 3:
+                          image(autumn, 0, -250);
+                          break;
+                        }
+                      } </code>
+                </pre>
+
+                <h2>Reflection</h2>
+                <p>
+                    From this assignment I had felt like I learnt some new things with processing, learning how to implement PImage and playing around with the transparent / tint() function.
+                    <br><br>
+                    Looking back on this assignment I do feel like I didn't get enough time to fully do iterations and flesh out the final output due to other courses and self time management, which I would lie to get better at. My main issue was exporting the file, due it to being too large for both Miro and discord and trying to find ways to compress it without damaging its quality was hard and somewhat upsetting that the final output on Miro doesn't fit the final GIF output I had gotten on processing.
+                    <br><br>
+                    Overall this assignment was enjoyable and fun, despite the issues I had to deal with.
+                </p>
+                <br>
+                <p>
+                    Miro board link: <a href="https://miro.com/app/board/uXjVNmcjx3A=/?share_link_id=596633213485" class="doc">https://miro.com/app/board/uXjVNmcjx3A=/?share_link_id=596633213485</a>
+                </p>
+                <br>
+
+            </section>
+        </section>
+    </main>
+    
+
+<!-- footer -->
+    <footer class="site-footer">
+        <div>
+            <a href="mailto:emilychin3@gmail.com" class="nav footer">email</a>
+            <a href="https://www.instagram.com/mremily9/" class="nav footer">instagram</a>
+            <a href="https://www.linkedin.com/in/emily-chin-964704206/" class="nav footer">linkedin</a>
+        </div>
+        <div>
+            <p>lights</p>
+        </div>
+    </footer>
+
+</html>
